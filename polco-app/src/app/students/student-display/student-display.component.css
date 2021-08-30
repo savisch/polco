@@ -1,0 +1,48 @@
+#student-display {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 255, .2);
+    margin: 100px auto;
+    height: 515px;
+    width: 700px;
+    overflow: hidden;
+    background-color: white;
+}
+
+ul {
+    overflow: auto;
+    width: 815px;
+    height: 100%;
+    padding-left: 0;
+    margin-top: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+img {
+    margin-left: 15px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 90px;
+}
+
+.student-info {
+    margin-left: 25px;
+    /* border: 1px solid purple;
+}
+
+h1 {
+    /* border: 1px solid blue; */
+    margin-top: 0;
+}
+
+p {
+    font-size: small;
+    /* border: 1px solid red; */
+    margin-top: -10px;
+    margin-left: 20px;
+}
