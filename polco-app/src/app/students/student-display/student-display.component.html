@@ -1,14 +1,17 @@
 
 <!-- {{ students | json }} -->
 <div id="student-display">
-    <input id="name-search" type="text" placeholder="Search by name">
-    <ul>
-        <li *ngFor = "let student of students"> 
+    <div class="form-group">
+        <input class="form-control" id="name-search" type="text" placeholder="Search by name" [(ngModel)]="searchName" (keyup)="filterStudents()">
+    </div>
+
+    <ul *ngIf="filteredLength > 0; else unfiltered">
+        <li *ngFor = "let student of filteredStudents"> 
             <div class="student-image">
                 <img src="{{ student.pic }}">
             </div>
             <div class="student-info">
-                <h1>{{ student.firstName | uppercase }} {{ student.lastName | uppercase }}</h1>
+                <h1>{{ student.fullName | uppercase }}</h1>
                 <p>Email: {{ student.email }}</p>
                 <p>Company: {{ student.company }}</p>
                 <p>Skill: {{ student.skill }}</p>
@@ -16,4 +19,18 @@
             </div>
         </li>
     </ul>
+    <ng-template #unfiltered>
+        <li *ngFor = "let student of students"> 
+            <div class="student-image">
+                <img src="{{ student.pic }}">
+            </div>
+            <div class="student-info">
+                <h1>{{ student.fullName | uppercase }}</h1>
+                <p>Email: {{ student.email }}</p>
+                <p>Company: {{ student.company }}</p>
+                <p>Skill: {{ student.skill }}</p>
+                <p>Average: {{ student.average }}%</p>
+            </div>
+        </li>
+    </ng-template>
 </div>
