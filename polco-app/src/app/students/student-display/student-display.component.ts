@@ -13,6 +13,11 @@ export class StudentDisplayComponent implements OnInit {
 
   students: Student[] = [];
   average: number =  0;
+  fullName: string = "";
+
+  searchName: string = "";
+  filteredStudents: Student[] = [];
+  filteredLength: number = 0;
 
   getStudents(): void {
     this.studentService.getStudents().subscribe(gottenStudents => {
@@ -20,7 +25,22 @@ export class StudentDisplayComponent implements OnInit {
       this.students = gottenStudents.students
       console.log(this.students)
       this.getAverage()
+      this.getFullName(this.students)
     })
+  }
+
+  getFullName(students: Student[]): void {
+    for (let i = 0; i < this.students.length; i++) {
+      this.students[i].fullName = this.students[i].firstName + " " + this.students[i].lastName
+    }
+  }
+
+  filterStudents(): void {
+    console.log(this.searchName)
+    this.filteredStudents = this.students.filter(student => student.fullName.toLowerCase().includes(this.searchName.toLowerCase()))
+    console.log (this.filteredStudents)
+    this.filteredLength = this.filteredStudents.length
+    this.getFullName(this.filteredStudents)
   }
 
   getAverage(): void {
@@ -33,9 +53,6 @@ export class StudentDisplayComponent implements OnInit {
       }
       let average: number = total / gLength
       this.students[i].average = average
-      console.log(this.students[i].grades)
-      console.log(total)
-      console.log(this.students[i].average)
     }
   }
 
