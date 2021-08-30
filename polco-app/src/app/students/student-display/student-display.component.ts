@@ -19,13 +19,25 @@ export class StudentDisplayComponent implements OnInit {
       console.log(gottenStudents)
       this.students = gottenStudents.students
       console.log(this.students)
-      // this.studentA = gottenStudents.students[0]
-      // console.log(this.studentA)
+      this.getAverage()
     })
   }
 
-  
-
+  getAverage(): void {
+    for (let i = 0; i < this.students.length; i++) {
+      let total: number = 0;
+      let gLength: number = this.students[i].grades.length;
+      for (let j = 0; j < gLength; j++) {
+        let grade: number = Number(this.students[i].grades[j])
+        total += grade
+      }
+      let average: number = total / gLength
+      this.students[i].average = average
+      console.log(this.students[i].grades)
+      console.log(total)
+      console.log(this.students[i].average)
+    }
+  }
 
   ngOnInit(): void {
     this.getStudents()
