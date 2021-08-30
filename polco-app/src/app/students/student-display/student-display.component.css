@@ -9,6 +9,23 @@
     background-color: white;
 }
 
+input[id="name-search"] {
+    width: 98%;
+    margin-left: 5px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+
+}
+
+#name-search:focus{
+    border-bottom: 1px solid black
+}
+
 ul {
     overflow: auto;
     width: 815px;
