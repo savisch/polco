@@ -2,6 +2,7 @@ export class Student {
     id: string = '';
     firstName: string = '';
     lastName: string = '';
+    fullName: string = '';
     pic: string = '';
     city: string = '';
     company: string = '';
