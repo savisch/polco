@@ -1,12 +1,18 @@
 
 <!-- {{ students | json }} -->
-
-<ul>
-    <li *ngFor = "let student of students"> 
-        <img src="{{ student.pic }}">
-        <h2>{{ student.firstName }} {{ student.lastName}}</h2>
-        <p>Email: {{ student.email }}</p>
-        <p>Company: {{ student.skill }}</p>
-        <p>Average: {{ student.grades }}</p>
-    </li>
-</ul>
+<div id="student-display">
+    <ul>
+        <li *ngFor = "let student of students"> 
+            <div class="student-image">
+                <img src="{{ student.pic }}">
+            </div>
+            <div class="student-info">
+                <h1>{{ student.firstName | uppercase }} {{ student.lastName | uppercase }}</h1>
+                <p>Email: {{ student.email }}</p>
+                <p>Company: {{ student.company }}</p>
+                <p>Skill: {{ student.skill }}</p>
+                <p>Average: {{ student.average }}%</p>
+            </div>
+        </li>
+    </ul>
+</div>
