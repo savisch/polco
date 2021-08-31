@@ -62,12 +62,22 @@ export class StudentDisplayComponent implements OnInit {
     console.log("opened")
     console.log(i)
     this.students[i].isOpen = true
-    
+  }
+
+  filteredOpenDetails(i:number): void {
+    console.log("opened")
+    console.log(i)
+    this.filteredStudents[i].isOpen = true
   }
 
   closeDetails(i: number): void {
     console.log("closed")
     this.students[i].isOpen = false;
+  }
+
+  filteredCloseDetails(i: number): void {
+    console.log("closed")
+    this.filteredStudents[i].isOpen = false;
   }
 
 

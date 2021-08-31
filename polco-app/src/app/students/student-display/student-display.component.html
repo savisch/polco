@@ -14,15 +14,18 @@
                 <div class="student-info">
                     <div class="student-heading">
                         <h1>{{ student.fullName | uppercase }}</h1>
-                        <button *ngIf="!student.isOpen; else opened" (click)= "openDetails(i)"> + </button> 
+                        <button *ngIf="!student.isOpen; else opened" (click)= "filteredOpenDetails(i)"> + </button> 
                         <ng-template #opened>
-                            <button (click)= "closeDetails(i)"> - </button>
+                            <button (click)= "filteredCloseDetails(i)"> - </button>
                         </ng-template>
                     </div>
                     <p>Email: {{ student.email }}</p>
                     <p>Company: {{ student.company }}</p>
                     <p>Skill: {{ student.skill }}</p>
                     <p>Average: {{ student.average }}%</p>
+                    <div class="student-grades" *ngIf="student.isOpen">
+                        <p *ngFor = "let grade of student.grades; let j = index">Test {{ j + 1 }}: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ grade }}</p>
+                    </div>
                 </div>
             </li>
         </div>
