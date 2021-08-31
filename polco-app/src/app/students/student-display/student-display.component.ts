@@ -19,6 +19,8 @@ export class StudentDisplayComponent implements OnInit {
   filteredStudents: Student[] = [];
   filteredLength: number = 0;
 
+  // isOpen: boolean = false;
+
   getStudents(): void {
     this.studentService.getStudents().subscribe(gottenStudents => {
       console.log(gottenStudents)
@@ -55,6 +57,19 @@ export class StudentDisplayComponent implements OnInit {
       this.students[i].average = average
     }
   }
+
+  openDetails(i:number): void {
+    console.log("opened")
+    console.log(i)
+    this.students[i].isOpen = true
+    
+  }
+
+  closeDetails(i: number): void {
+    console.log("closed")
+    this.students[i].isOpen = false;
+  }
+
 
   ngOnInit(): void {
     this.getStudents()

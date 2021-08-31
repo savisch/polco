@@ -5,32 +5,49 @@
         <input class="form-control" id="name-search" type="text" placeholder="Search by name" [(ngModel)]="searchName" (keyup)="filterStudents()">
     </div>
 
-    <ul *ngIf="filteredLength > 0; else unfiltered">
-        <li *ngFor = "let student of filteredStudents"> 
-            <div class="student-image">
-                <img src="{{ student.pic }}">
-            </div>
-            <div class="student-info">
-                <h1>{{ student.fullName | uppercase }}</h1>
-                <p>Email: {{ student.email }}</p>
-                <p>Company: {{ student.company }}</p>
-                <p>Skill: {{ student.skill }}</p>
-                <p>Average: {{ student.average }}%</p>
-            </div>
-        </li>
+    <ul>
+        <div *ngIf="filteredLength > 0; else unfiltered">
+            <li *ngFor = "let student of filteredStudents; let i = index"> 
+                <div class="student-image">
+                    <img src="{{ student.pic }}">
+                </div>
+                <div class="student-info">
+                    <div class="student-heading">
+                        <h1>{{ student.fullName | uppercase }}</h1>
+                        <button *ngIf="!student.isOpen; else opened" (click)= "openDetails(i)"> + </button> 
+                        <ng-template #opened>
+                            <button (click)= "closeDetails(i)"> - </button>
+                        </ng-template>
+                    </div>
+                    <p>Email: {{ student.email }}</p>
+                    <p>Company: {{ student.company }}</p>
+                    <p>Skill: {{ student.skill }}</p>
+                    <p>Average: {{ student.average }}%</p>
+                </div>
+            </li>
+        </div>
+        
+        <ng-template #unfiltered>
+            <li *ngFor = "let student of students; let i = index"> 
+                <div class="student-image">
+                    <img src="{{ student.pic }}">
+                </div>
+                <div class="student-info">
+                    <div class="student-heading">
+                        <h1>{{ student.fullName | uppercase }}</h1>
+                        <button *ngIf="!student.isOpen; else opened" (click)= "openDetails(i)"> + </button>  
+                        <ng-template #opened>
+                            <button (click)= "closeDetails(i)"> - </button>
+                        </ng-template>
+                    </div>
+                    <p>Email: {{ student.email }}</p>
+                    <p>Company: {{ student.company }}</p>
+                    <p>Skill: {{ student.skill }}</p>
+                    <p>Average: {{ student.average }}%</p>
+                    <p *ngFor = "let grade of student.grades; let j = index">Test {{ j + 1 }}: {{ grade }}</p>
+                </div>
+            </li>
+        </ng-template>
     </ul>
-    <ng-template #unfiltered>
-        <li *ngFor = "let student of students"> 
-            <div class="student-image">
-                <img src="{{ student.pic }}">
-            </div>
-            <div class="student-info">
-                <h1>{{ student.fullName | uppercase }}</h1>
-                <p>Email: {{ student.email }}</p>
-                <p>Company: {{ student.company }}</p>
-                <p>Skill: {{ student.skill }}</p>
-                <p>Average: {{ student.average }}%</p>
-            </div>
-        </li>
-    </ng-template>
+    
 </div>

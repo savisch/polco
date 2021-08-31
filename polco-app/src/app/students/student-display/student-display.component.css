@@ -3,7 +3,7 @@
     border-radius: 8px;
     box-shadow: 1px 2px 2px 1px rgba(0, 0, 255, .2);
     margin: 100px auto;
-    height: 515px;
+    height: 575px;
     width: 700px;
     overflow: hidden;
     background-color: white;
@@ -49,12 +49,29 @@ img {
 
 .student-info {
     margin-left: 25px;
-    /* border: 1px solid purple;
+    width: 100%;
+    
+}
+
+.student-heading {
+    /* border: 1px solid purple; */
+    width: 83%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    font-size: 60px;
+    color:rgb(186, 186, 186);
+    border: none;
+    /* margin-right: 10px; */
+    margin-top: 0;
 }
 
 h1 {
     /* border: 1px solid blue; */
-    margin-top: 0;
+    margin-top: 18px;
 }
 
 p {
