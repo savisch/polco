@@ -44,8 +44,8 @@
                     <p>Company: {{ student.company }}</p>
                     <p>Skill: {{ student.skill }}</p>
                     <p>Average: {{ student.average }}%</p>
-                    <div *ngIf="student.isOpen">
-                        <p *ngFor = "let grade of student.grades; let j = index">Test {{ j + 1 }}: {{ grade }}</p>
+                    <div class="student-grades" *ngIf="student.isOpen">
+                        <p *ngFor = "let grade of student.grades; let j = index">Test {{ j + 1 }}: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ grade }}</p>
                     </div>
                 </div>
             </li>
