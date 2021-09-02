@@ -27,9 +27,15 @@
                     <div class="student-grades" *ngIf="student.isOpen">
                         <p *ngFor = "let grade of student.grades; let j = index">Test {{ j + 1 }}: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ grade }}</p>
                     </div>
-                    <!-- <div class="student-tags">
-                        <input class="form-control" id="tag-input" type="text" placeholder="Add a tag" [(ngModel)]="tagName">
-                    </div> -->
+                    <div class="student-tags">
+                        <div class="added-tags  ">
+                            <h6 *ngFor = "let tag of student.tags">{{ tag }}</h6>
+                        </div>
+
+                        <form #form="ngForm" class="tag-form" onsubmit="reset()">
+                            <input class="tag-input" type="text" placeholder="Add a tag" name="addedTag" #studentTag (change)="getTag(i, studentTag.value, student.fullName)">
+                        </form>
+                    </div>
                 </div>
             </li>
         </div>
@@ -60,7 +66,7 @@
                         </div>
 
                         <form #form="ngForm" class="tag-form" onsubmit="reset()">
-                            <input class="tag-input" type="text" placeholder="Add a tag" name="addedTag" #studentTag (change)="getTag(i, studentTag.value)">
+                            <input class="tag-input" type="text" placeholder="Add a tag" name="addedTag" #studentTag (change)="getTag(i, studentTag.value,  student.fullName )">
                         </form>
                     </div>
                 </div>
