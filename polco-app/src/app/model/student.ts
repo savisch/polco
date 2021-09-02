@@ -1,5 +1,5 @@
 export class Student {
-    id: string = '';
+    id: number = 0;
     firstName: string = '';
     lastName: string = '';
     fullName: string = '';
@@ -12,5 +12,4 @@ export class Student {
     grades: number[] = [];
     tags: string[] = [];
     isOpen: boolean = false;
-
 }
