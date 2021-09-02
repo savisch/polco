@@ -42,7 +42,15 @@ export class StudentDisplayComponent implements OnInit {
     }
   }
 
-  filterStudents(): void {
+  filterStudentsByName(): void {
+    // console.log(this.searchName)
+    this.filteredStudents = this.students.filter(student => student.fullName.toLowerCase().includes(this.searchName.toLowerCase()))
+    // console.log (this.filteredStudents)
+    this.filteredLength = this.filteredStudents.length
+    this.getFullName(this.filteredStudents)
+  }
+
+  filterStudentsByTag(): void {
     // console.log(this.searchName)
     this.filteredStudents = this.students.filter(student => student.fullName.toLowerCase().includes(this.searchName.toLowerCase()))
     // console.log (this.filteredStudents)
@@ -136,6 +144,12 @@ export class StudentDisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStudents()
+    this.studentService.getMockStudents().subscribe(gottenStudents => {
+      this.mockStudents = gottenStudents
+      for(let i = 0; i < this.mockStudents.length; i++) {
+        this.students[this.mockStudents[i].studentId -1].tags = this.mockStudents[i].tags
+      }
+    })
   }
 
 }
