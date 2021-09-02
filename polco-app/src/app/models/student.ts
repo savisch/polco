@@ -10,6 +10,7 @@ export class Student {
     email: string = '';
     average: number = 0;
     grades: number[] = [];
+    tags: string[] = [];
     isOpen: boolean = false;
 
 }
