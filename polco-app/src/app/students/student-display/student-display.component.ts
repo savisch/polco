@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { StudentService } from 'src/app/service/student.service';
-import { Student } from 'src/app/models/student';
+import { Student } from 'src/app/models/student'
 
 @Component({
   selector: 'app-student-display',
@@ -16,10 +16,12 @@ export class StudentDisplayComponent implements OnInit {
   fullName: string = "";
 
   searchName: string = "";
+  tagName: string = "";
+  addedTag: string = "";
+  tags: string[] = [];
   filteredStudents: Student[] = [];
   filteredLength: number = 0;
 
-  // isOpen: boolean = false;
 
   getStudents(): void {
     this.studentService.getStudents().subscribe(gottenStudents => {
@@ -80,6 +82,27 @@ export class StudentDisplayComponent implements OnInit {
     this.filteredStudents[i].isOpen = false;
   }
 
+  getTag(i: number, value: string): void {
+    this.students[i].tags = []
+    console.log(this.students[i].tags)
+    this.students[i].tags.push(value)
+    // this.tags.push(value)
+    // console.log(this.tags)
+    // this.students[i].tags.push(...this.tags) 
+    // this.tags = []
+
+    
+  }
+
+  // addTags(i: number): void {
+  //   let timeout: any = null;
+  //   clearTimeout(timeout);
+  //   timeout = setTimeout(() => {
+  //     this.students[i].tags.push(this.addedTag)
+  //     console.log("Tag:", this.students[i].tags)
+  //   }, 2000);
+  // }
+  
 
   ngOnInit(): void {
     this.getStudents()
