@@ -9,7 +9,7 @@
     background-color: white;
 }
 
-input[id="name-search"] {
+input {
     width: 98%;
     margin-left: 5px;
     padding-top: 10px;
@@ -17,12 +17,11 @@ input[id="name-search"] {
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;    
     outline: none;
-
 }
 
-#name-search:focus{
+input:focus{
     border-bottom: 1px solid black
 }
 
@@ -69,6 +68,7 @@ button {
     font-size: 60px;
     color:rgb(186, 186, 186);
     border: none;
+    background: white;
     /* margin-right: 10px; */
     margin-top: 0;
 }
@@ -88,4 +88,30 @@ p {
 .student-grades {
     padding-top: 10px;
     /* border: 1px solid red; */
+}
+
+.tag-input {
+    width: 20%;
+    margin-left: 15px;
+}
+
+.added-tags {
+    /* border: 1px solid red; */
+    margin-left: 15px;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+    width: 75%;
+    height: auto;
+}
+
+h6 {
+    margin: 0 0 0 5px;;
+    padding: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.tag-form {
+    margin-bottom: 15px;
 }
