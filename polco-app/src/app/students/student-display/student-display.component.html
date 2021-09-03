@@ -2,8 +2,8 @@
 <!-- {{ students | json }} -->
 <div id="student-display">
     <div class="form-group">
-        <input class="form-control" id="name-search" type="text" placeholder="Search by name" [(ngModel)]="searchName" (keyup)="filterStudents()">
-        <input class="form-control" id="tag-search" type="text" placeholder="Search by tag" [(ngModel)]="tagName" (keyup)="filterStudents()">
+        <input class="form-control" id="name-search" type="text" placeholder="Search by name" [(ngModel)]="searchName" (keyup)="filterStudentsByName()">
+        <input class="form-control" id="tag-search" type="text" placeholder="Search by tag" [(ngModel)]="tagName" (keyup)="filterStudentsByTag()">
     </div>
 
     <ul>

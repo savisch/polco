@@ -44,17 +44,72 @@ export class StudentDisplayComponent implements OnInit {
 
   filterStudentsByName(): void {
     // console.log(this.searchName)
-    this.filteredStudents = this.students.filter(student => student.fullName.toLowerCase().includes(this.searchName.toLowerCase()))
-    // console.log (this.filteredStudents)
-    this.filteredLength = this.filteredStudents.length
+    if(this.filteredStudents.length !== 0 && this.tagName.length > 0) {
+      console.log("filtered")
+      this.filteredStudents = this.filteredStudents.filter(student => student.fullName.toLowerCase().includes(this.searchName.toLowerCase()))
+      this.filteredLength = this.filteredStudents.length
+      if(this.filteredLength == 0) {
+        alert("No students found")
+        this.filterStudentsByTag()
+      }
+      if(this.searchName.length == 0) {
+        this.filterStudentsByTag()
+      }
+    } else {
+      this.filteredStudents = this.students.filter(student => student.fullName.toLowerCase().includes(this.searchName.toLowerCase()))
+      // console.log (this.filteredStudents)
+      this.filteredLength = this.filteredStudents.length
+      if(this.filteredLength == 0) {
+        confirm("No students found")
+      }
+      if(this.searchName.length == 0 && this.tagName.length > 0) {
+        this.filterStudentsByTag()
+      }
+    }
     this.getFullName(this.filteredStudents)
   }
 
   filterStudentsByTag(): void {
-    // console.log(this.searchName)
-    this.filteredStudents = this.students.filter(student => student.fullName.toLowerCase().includes(this.searchName.toLowerCase()))
-    // console.log (this.filteredStudents)
+    let tagFilteredStudents: Student[] = [];
+    console.log(this.tagName)
+    if(this.filteredStudents.length !== 0 && this.searchName.length > 0) {
+      console.log("filtered")
+      for(let i = 0; i < this.filteredStudents.length; i++) {
+        if(this.filteredStudents[i].tags) {
+          console.log(this.filteredStudents[i].fullName, this.filteredStudents[i].tags)
+          for(let j = 0; j < this.filteredStudents[i].tags.length; j++) {
+            console.log(this.filteredStudents[i].tags[j])
+          
+            if(this.filteredStudents[i].tags[j].includes(this.tagName) && this.tagName !== "") {
+              console.log("match")
+              tagFilteredStudents.push(this.students[i])
+            }
+          }
+        }
+      }
+      
+    } else {
+      for(let i = 0; i < this.students.length; i++) {
+        if(this.students[i].tags) {
+          console.log(this.students[i].fullName, this.students[i].tags)
+          for(let j = 0; j < this.students[i].tags.length; j++) {
+            console.log(this.students[i].tags[j])
+          
+            if(this.students[i].tags[j].includes(this.tagName) && this.tagName !== "") {
+              console.log("match")
+              tagFilteredStudents.push(this.students[i])
+            }
+          }
+        }
+      }
+    }
+    
+    this.filteredStudents = tagFilteredStudents
+    tagFilteredStudents = []
     this.filteredLength = this.filteredStudents.length
+    if(this.tagName.length == 0 && this.searchName.length > 0) {
+      this.filterStudentsByName()
+    }
     this.getFullName(this.filteredStudents)
   }
 
