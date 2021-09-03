@@ -44,8 +44,15 @@ export class StudentDisplayComponent implements OnInit {
 
   filterStudentsByName(): void {
     // console.log(this.searchName)
+    
+    if(this.searchName.length == 0 && this.tagName.length > 0) {
+      this.filterStudentsByTag()
+    }
+
+    let nameFilteredStudents: Student[] = [];
     if(this.filteredStudents.length !== 0 && this.tagName.length > 0) {
-      console.log("filtered")
+      // console.log("filtered")
+
       this.filteredStudents = this.filteredStudents.filter(student => student.fullName.toLowerCase().includes(this.searchName.toLowerCase()))
       this.filteredLength = this.filteredStudents.length
       if(this.filteredLength == 0) {
@@ -70,19 +77,18 @@ export class StudentDisplayComponent implements OnInit {
   }
 
   filterStudentsByTag(): void {
-    let tagFilteredStudents: Student[] = [];
-    console.log(this.tagName)
+    let tagFilteredStudents: Student[] = []
     if(this.filteredStudents.length !== 0 && this.searchName.length > 0) {
-      console.log("filtered")
+      // console.log("filtered")
       for(let i = 0; i < this.filteredStudents.length; i++) {
         if(this.filteredStudents[i].tags) {
-          console.log(this.filteredStudents[i].fullName, this.filteredStudents[i].tags)
+          // console.log(this.filteredStudents[i].fullName, this.filteredStudents[i].tags)
           for(let j = 0; j < this.filteredStudents[i].tags.length; j++) {
-            console.log(this.filteredStudents[i].tags[j])
+            // console.log(this.filteredStudents[i].tags[j])
           
             if(this.filteredStudents[i].tags[j].includes(this.tagName) && this.tagName !== "") {
-              console.log("match")
-              tagFilteredStudents.push(this.students[i])
+              // console.log("match")
+              tagFilteredStudents.push(this.filteredStudents[i])
             }
           }
         }
@@ -91,13 +97,15 @@ export class StudentDisplayComponent implements OnInit {
     } else {
       for(let i = 0; i < this.students.length; i++) {
         if(this.students[i].tags) {
-          console.log(this.students[i].fullName, this.students[i].tags)
+          // console.log(this.students[i].fullName, this.students[i].tags)
           for(let j = 0; j < this.students[i].tags.length; j++) {
-            console.log(this.students[i].tags[j])
+            // console.log(this.students[i].tags[j])
           
-            if(this.students[i].tags[j].includes(this.tagName) && this.tagName !== "") {
-              console.log("match")
-              tagFilteredStudents.push(this.students[i])
+            if(this.students[i].tags[j].includes(this.tagName)) {
+              // console.log("match")
+              if(!tagFilteredStudents.includes(this.students[i])) {
+                tagFilteredStudents.push(this.students[i])
+              }
             }
           }
         }
@@ -105,11 +113,18 @@ export class StudentDisplayComponent implements OnInit {
     }
     
     this.filteredStudents = tagFilteredStudents
+    // console.log(tagFilteredStudents)
     tagFilteredStudents = []
     this.filteredLength = this.filteredStudents.length
-    if(this.tagName.length == 0 && this.searchName.length > 0) {
+
+    
+    if(this.searchName.length > 0 && this.tagName.length == 0) {
       this.filterStudentsByName()
     }
+    if(this.filteredLength == 0) {
+      confirm("No students found")
+    }
+    
     this.getFullName(this.filteredStudents)
   }
 
@@ -129,24 +144,18 @@ export class StudentDisplayComponent implements OnInit {
   }
 
   openDetails(i:number): void {
-    console.log("opened")
-    console.log(i)
     this.students[i].isOpen = true
   }
 
   filteredOpenDetails(i:number): void {
-    console.log("opened")
-    console.log(i)
     this.filteredStudents[i].isOpen = true
   }
 
   closeDetails(i: number): void {
-    console.log("closed")
     this.students[i].isOpen = false
   }
 
   filteredCloseDetails(i: number): void {
-    console.log("closed")
     this.filteredStudents[i].isOpen = false;
   }
 
@@ -158,14 +167,14 @@ export class StudentDisplayComponent implements OnInit {
 
       if(this.mockStudents.length > 0) {
         let studentMatch = this.mockStudents.find(student => student.fullName == name);
-        console.log(studentMatch)
+        // console.log(studentMatch)
 
         if(studentMatch) {
-          console.log("match")
-          console.log("tags:" ,studentMatch.tags)
+          // console.log("match")
+          // console.log("tags:" ,studentMatch.tags)
           this.tags = studentMatch.tags
           this.tags.push(value)
-          console.log("tags2:", this.tags)
+          // console.log("tags2:", this.tags)
           
           if(this.filteredStudents.length > 0) {
             this.filteredStudents[i].tags = this.tags
@@ -174,13 +183,13 @@ export class StudentDisplayComponent implements OnInit {
           }
 
           this.studentService.putTag(studentMatch.fullName, studentMatch.studentId, studentMatch.id, this.tags).subscribe(result => {
-            console.log(result)
+            // console.log(result)
           })
           this.tags=[]
 
         }else {
-          console.log("no match")
-          console.log(this.tags)
+          // console.log("no match")
+          // console.log(this.tags)
 
           if(this.filteredStudents.length > 0) {
             this.filteredStudents[i].tags = this.tags
@@ -189,7 +198,7 @@ export class StudentDisplayComponent implements OnInit {
           }
 
           this.studentService.newPostTag(this.students[i].fullName, i + 1, this.tags).subscribe(gottenTag => {
-            console.log(gottenTag)
+            // console.log(gottenTag)
           })
           this.tags=[]
         }
