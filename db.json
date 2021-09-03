@@ -1,21 +1,5 @@
 {
   "students": [
-    {
-      "fullName": "Ingaberg Orton",
-      "studentId": 1,
-      "tags": [
-        "tag1",
-        "ddd"
-      ],
-      "id": 1
-    },
-    {
-      "fullName": "Berti Skitt",
-      "studentId": 4,
-      "tags": [
-        "aaa"
-      ],
-      "id": 2
-    }
+    
   ]
 }
